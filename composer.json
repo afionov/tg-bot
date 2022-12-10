@@ -1,0 +1,28 @@
+{
+    "name": "afionov/tg-quest-bot",
+    "description": "Telegram bot",
+    "authors": [
+        {
+            "name": "Alexander Fionov",
+            "email": "aa@fionov-dev.ru"
+        }
+    ],
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.1",
+        "guzzlehttp/psr7": "^2.4.3"
+    },
+    "require-dev": {
+        "vimeo/psalm": "*",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "config": {
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Bot\\": "src"
+        }
+    }
+}
