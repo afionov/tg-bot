@@ -16,6 +16,6 @@ abstract class Command implements CommandInterface, JsonableInterface, Arrayable
 
     public function toArray(): array
     {
-        return (array)$this;
+        return (array) $this;
     }
 }

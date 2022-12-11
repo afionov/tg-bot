@@ -2,7 +2,7 @@
 
 namespace Bot\Service\HttpClient\Command;
 
-use Bot\Entity\Message;
+use Bot\Entity\Telegram\Message;
 
 class SendMessage extends Command
 {

@@ -2,9 +2,9 @@
 
 namespace Bot\Mode;
 
-use Bot\General\WebhookInterface;
+use Bot\Entity\WebhookUpdate;
 
 interface ModeInterface
 {
-    public function handleWebhook(WebhookInterface $webhook);
+    public function handleWebhook(WebhookUpdate $webhook);
 }

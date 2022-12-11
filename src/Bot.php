@@ -2,19 +2,20 @@
 
 namespace Bot;
 
+use Bot\Entity\Helper\Hydrator;
 use Bot\Entity\WebhookUpdate;
 use Bot\Log\Logger;
 use Bot\Mode\ModeInterface;
 use Throwable;
 
-class Bot
+final class Bot
 {
     /**
      * @param string $token
      * @param ModeInterface $modeService
      */
     public function __construct(
-        protected string               $token,
+        protected string        $token,
         protected ModeInterface $modeService
     )
     {
@@ -23,11 +24,10 @@ class Bot
     public function handleWebhook(): void
     {
         try {
-            $webhookMessage = WebhookUpdate::createFromRequest();
+            $webhookMessage = Hydrator::hydrateFromRequest(new WebhookUpdate);
             $this->modeService->handleWebhook($webhookMessage);
         } catch(Throwable $e) {
             Logger::log($e->getMessage() . PHP_EOL . $e->getTraceAsString());
-            return;
         }
     }
 }

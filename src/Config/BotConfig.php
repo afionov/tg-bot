@@ -8,7 +8,7 @@ use Exception;
  * @property-read string $token
  * @property-read array $allowedUsernames
  */
-class BotConfig
+final class BotConfig
 {
     protected Config $config;
 
@@ -18,6 +18,9 @@ class BotConfig
         $this->config = new Config($path);
     }
 
+    /**
+     * @throws Exception
+     */
     public function __get($name)
     {
         return $this->config->$name ?? throw new Exception($name . ' - not found in ' . __CLASS__);

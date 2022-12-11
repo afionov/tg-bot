@@ -4,7 +4,7 @@ namespace Bot\Config;
 
 use Bot\General\ArrayableInterface;
 
-class Config implements ArrayableInterface
+final class Config implements ArrayableInterface
 {
     protected array $data = [];
 

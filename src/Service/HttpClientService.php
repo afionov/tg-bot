@@ -8,7 +8,7 @@ use Bot\Service\HttpClient\Request;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 
-class HttpClientService
+final class HttpClientService
 {
     protected const TELEGRAM_URL = 'https://api.telegram.org/bot';
 
