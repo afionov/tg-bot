@@ -2,14 +2,20 @@
 
 namespace Bot\Mode\Quest;
 
-class Step
+final class Step
 {
-    /**
-     * @param Entity\Step $step
-     * @return static
-     */
-    public static function loadStep(Entity\Step $step): static
+    public static function fromId(string $id): Step
     {
-        return new static();
+        return new Step();
+    }
+
+    public function send()
+    {
+
+    }
+
+    public function move($stepId)
+    {
+
     }
 }

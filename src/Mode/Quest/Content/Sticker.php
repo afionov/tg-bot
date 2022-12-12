@@ -2,7 +2,7 @@
 
 namespace Bot\Mode\Quest\Content;
 
-class Image
+class Sticker
 {
     public string $value;
 }

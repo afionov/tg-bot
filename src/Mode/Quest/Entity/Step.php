@@ -3,19 +3,21 @@
 namespace Bot\Mode\Quest\Entity;
 
 use Bot\Entity\Entity;
+use Bot\Entity\Helper\Attribute\ArrayOf;
 
 class Step extends Entity
 {
     public string $id;
 
     /**
-     * @var array|Content
-     * @psalm-var list<Content>
+     * @var Content[]
      */
-    public array|Content $content;
+    #[ArrayOf(Content::class)]
+    public array $content;
 
     /**
-     * @var
+     * @var Answer[]
      */
-    public array|Answer $answer;
+    #[ArrayOf(Answer::class)]
+    public array $answer;
 }

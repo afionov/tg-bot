@@ -8,14 +8,27 @@ class MessageEntity extends Entity
 {
     /**
      * @var string
-     * Type of the entity. Currently, can be “mention” (username),
-     * “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start jobs_bot),
-     * “url” (https://telegram.org), “email” (do-not-reply@telegram.org),
-     * “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text),
-     * “underline” (underlined text), “strikethrough” (strikethrough text),
-     * “spoiler” (spoiler message), “code” (monowidth string), “pre” (monowidth block),
-     * “text_link” (for clickable text URLs), “text_mention” (for users without usernames),
-     * “custom_emoji” (for inline custom emoji stickers)
+     * Type of the entity. <br>
+     * Currently, can be <br>
+     * <ul>
+     * <li>“mention” (username) </li>
+     * <li>“hashtag” (#hashtag) </li>
+     * <li>“cashtag” ($USD) </li>
+     * <li>“bot_command” (/start jobs_bot) </li>
+     * <li>“url” (https://telegram.org) </li>
+     * <li>“email” (do-not-reply@telegram.org) </li>
+     * <li>“phone_number” (+1-212-555-0123) </li>
+     * <li>“bold” (bold text) </li>
+     * <li>“italic” (italic text) </li>
+     * <li>“underline” (underlined text) </li>
+     * <li>“strikethrough” (strikethrough text) </li>
+     * <li>“spoiler” (spoiler message) </li>
+     * <li>“code” (monowidth string) </li>
+     * <li>“pre” (monowidth block) </li>
+     * <li>“text_link” (for clickable text URLs) </li>
+     * <li>“text_mention” (for users without usernames) </li>
+     * <li>“custom_emoji” (for inline custom emoji stickers) </li>
+     * </ul>
      */
     public string $type;
 
@@ -33,25 +46,29 @@ class MessageEntity extends Entity
 
     /**
      * @var string
-     * Optional. For “text_link” only, URL that will be opened after user taps on the text
+     * Optional <br>
+     * For “text_link” only, URL that will be opened after user taps on the text
      */
     public string $url;
 
     /**
      * @var User
-     * Optional. For “text_mention” only, the mentioned user
+     * Optional <br>
+     * For “text_mention” only, the mentioned user
      */
     public User $user;
 
     /**
      * @var string
-     * Optional. For “pre” only, the programming language of the entity text
+     * Optional <br>
+     * For “pre” only, the programming language of the entity text
      */
     public string $language;
 
     /**
      * @var string
-     * Optional. For “custom_emoji” only, unique identifier of the custom emoji.
+     * Optional <br>
+     * For “custom_emoji” only, unique identifier of the custom emoji.
      * Use getCustomEmojiStickers to get full information about the sticker
      */
     public string $custom_emoji_id;

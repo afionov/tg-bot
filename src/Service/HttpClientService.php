@@ -15,8 +15,7 @@ final class HttpClientService
     public function __construct(
         protected string $token,
         protected ClientInterface $client
-    )
-    {
+    ) {
     }
 
     /**

@@ -2,23 +2,41 @@
 
 namespace Bot\Service;
 
+use Bot\Service\Stash\Stash;
+use Bot\Service\Stash\Type\ContentType;
+use Bot\Service\Stash\Type\StashTypeFactory;
+
 final class StashService
 {
-    protected const STASH_PATH = __DIR__ . '/../../../../../../';
+    protected const STASH_PATH = __DIR__ . '/../../';
 
-    public function load(string $name): StashService
-    {
-        $fileContent = file_get_contents(self::STASH_PATH . $name . '.json');
-        if (false === $fileContent) {
-            throw new \RuntimeException('Could not load stash file');
+    protected array $stashes = [];
+
+    public function load(
+        string $name,
+        ContentType $contentType = ContentType::JSON,
+        ?string $index = null
+    ): StashService {
+        $stashType = StashTypeFactory::make($contentType);
+        $stash = $stashType->createStash(self::STASH_PATH . $name . '.' . $stashType->getExtension());
+
+        if (isset($index)) {
+            $this->stashes[$index] = $stash;
+            return $this;
         }
-        $fileContent = json_decode($fileContent, true);
-        if (false === $fileContent) {
-            throw new \RuntimeException('Could not decode stash file');
-        }
+
+        $this->stashes[] = $stash;
+
+        return $this;
     }
 
-    public function __construct()
+    public function save(string|int $index): void
     {
+        $this->get($index)?->save();
+    }
+
+    public function get(string|int $index): ?Stash
+    {
+        return $this->stashes[$index] ?? null;
     }
 }

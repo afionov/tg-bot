@@ -17,8 +17,7 @@ final class Bot
     public function __construct(
         protected string        $token,
         protected ModeInterface $modeService
-    )
-    {
+    ) {
     }
 
     public function handleWebhook(): void

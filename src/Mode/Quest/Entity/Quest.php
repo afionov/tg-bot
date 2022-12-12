@@ -3,6 +3,7 @@
 namespace Bot\Mode\Quest\Entity;
 
 use Bot\Entity\Entity;
+use Bot\Entity\Helper\Attribute\ArrayOf;
 
 class Quest extends Entity
 {
@@ -19,5 +20,11 @@ class Quest extends Entity
     /**
      * @var Step[]
      */
-    public array|Step $steps;
+    #[ArrayOf(Step::class)]
+    public array $steps;
+
+    /**
+     * @var string
+     */
+    public string $start_message;
 }

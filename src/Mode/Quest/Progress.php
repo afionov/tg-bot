@@ -4,9 +4,9 @@ namespace Bot\Mode\Quest;
 
 use Bot\Service\StashService;
 
-class Progress
+final class Progress
 {
-    protected Entity\Progress $entity;
+    protected const STASH_INDEX = 'progress';
 
     protected bool $hasProgress = false;
 
@@ -14,15 +14,21 @@ class Progress
 
     public function __construct(
         protected string $username,
-        protected readonly StashService $stashService
-    )
-    {
-        $this->stash->load($this->stash->generateDefaultFilepathByName($questHash));
-        $this->entity = Entity\Progress\Progress::createFromArray($this->stash->toArray());
-        $this->entity->mapArrayValue('users', 'username');
-        if(isset($this->entity->users[$this->username])) {
-            $this->hasProgress = true;
+        protected readonly StashService $stashService,
+        string $questHash
+    ) {
+        $progressStash = $this->stashService
+            ->load(name: $questHash, index: self::STASH_INDEX)
+            ->get(self::STASH_INDEX);
+        if (is_null($progressStash)) {
+            return;
         }
+        $userProgress = $progressStash->get($this->username);
+        if (is_null($userProgress)) {
+            return;
+        }
+        $this->hasProgress = true;
+        $this->currentStep = Step::fromId($userProgress);
     }
 
     public function hasProgress(): bool
@@ -30,12 +36,12 @@ class Progress
         return $this->hasProgress;
     }
 
-    public function getCurrentStep(): \Bot\Service\Quest\Entity\Step
+    public function getCurrentStep()
     {
         return $this->currentStep;
     }
 
-    public function updateCurrentStep()
+    public function updateProgress(Step $step): void
     {
 
     }

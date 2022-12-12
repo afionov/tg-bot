@@ -3,6 +3,7 @@
 namespace Bot\Entity\Telegram;
 
 use Bot\Entity\Entity;
+use Bot\Entity\Helper\Attribute\ArrayOf;
 
 class Message extends Entity
 {
@@ -14,7 +15,9 @@ class Message extends Entity
 
     /**
      * @var User
-     * Optional. Sender of the message; empty for messages sent to channels.
+     * Optional<br>
+     * Sender of the message<br>
+     * empty for messages sent to channels.<br>
      * For backward compatibility, the field contains a fake sender user
      * in non-channel chats, if the message was sent on behalf of a chat.
      */
@@ -22,7 +25,8 @@ class Message extends Entity
 
     /**
      * @var Chat
-     * Optional. Sender of the message, sent on behalf of a chat.
+     * Optional. <br>
+     * Sender of the message, sent on behalf of a chat.<br>
      * For example, the channel itself for channel posts,
      * the supergroup itself for messages from anonymous group administrators,
      * the linked channel for messages automatically forwarded
@@ -139,7 +143,8 @@ class Message extends Entity
      * Optional. For text messages, special entities like usernames,
      * URLs, bot commands, etc. that appear in the text
      */
-    public array|MessageEntity $entities;
+    #[ArrayOf(MessageEntity::class)]
+    public array $entities;
 
     /**
      * @var Animation
@@ -164,7 +169,8 @@ class Message extends Entity
      * @var PhotoSize[]
      * Optional. Message is a photo, available sizes of the photo
      */
-    public array|PhotoSize $photo;
+    #[ArrayOf(PhotoSize::class)]
+    public array $photo;
 
     /**
      * @var Sticker
@@ -201,7 +207,8 @@ class Message extends Entity
      * Optional. For messages with a caption, special entities like usernames, URLs,
      * bot commands, etc. that appear in the caption
      */
-    public array|MessageEntity $caption_entities;
+    #[ArrayOf(MessageEntity::class)]
+    public array $caption_entities;
 
     /**
      * @var Contact
@@ -245,7 +252,8 @@ class Message extends Entity
      * Optional. New members that were added to the group
      * or supergroup and information about them (the bot itself may be one of these members)
      */
-    public array|User $new_chat_members;
+    #[ArrayOf(User::class)]
+    public array $new_chat_members;
 
     /**
      * @var User
@@ -263,7 +271,8 @@ class Message extends Entity
      * @var PhotoSize[]
      * Optional. A chat photo was change to this value
      */
-    public array|PhotoSize $new_chat_photo;
+    #[ArrayOf(PhotoSize::class)]
+    public array $new_chat_photo;
 
     /**
      * @var bool
