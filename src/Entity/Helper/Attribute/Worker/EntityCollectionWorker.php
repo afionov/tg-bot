@@ -6,12 +6,11 @@ use Bot\Entity\Exception\InvalidEntityException;
 use Bot\Entity\Helper\Hydrator;
 use ReflectionException;
 
-final class ArrayOfWorker implements WorkerInterface
+final class EntityCollectionWorker implements WorkerInterface
 {
     public function __construct(
-        protected string $valueType
-    )
-    {
+        protected string $entityClassName
+    ) {
     }
 
     /**
@@ -29,7 +28,7 @@ final class ArrayOfWorker implements WorkerInterface
         $result = [];
 
         foreach ($value as $innerValue) {
-            $result[] = Hydrator::hydrate($this->valueType, $innerValue);
+            $result[] = Hydrator::hydrate($this->entityClassName, $innerValue);
         }
 
         return $result;

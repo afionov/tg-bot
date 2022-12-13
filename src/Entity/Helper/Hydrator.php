@@ -4,7 +4,6 @@ namespace Bot\Entity\Helper;
 
 use Bot\Entity\Entity;
 use Bot\Entity\Exception\InvalidEntityException;
-use Bot\Entity\Exception\RequiredValueException;
 use Bot\Entity\Exception\UnsupportedTypeException;
 use Bot\Entity\Helper\Attribute\AttributeInterface;
 use ReflectionAttribute;
@@ -35,7 +34,7 @@ final class Hydrator
 
             try {
                 $entity->$name = self::hydrateProperty($property, $source['name']);
-            } catch (UnsupportedTypeException|RequiredValueException $e) {
+            } catch (UnsupportedTypeException $e) {
                 throw new InvalidEntityException($entity::class, $e->getMessage());
             }
         }

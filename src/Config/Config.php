@@ -18,12 +18,12 @@ final class Config implements ArrayableInterface
         return $this->data[$name] ?? null;
     }
 
-    public function __isset(string $name)
+    public function __isset(string $name): bool
     {
         return isset($this->data[$name]);
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return $this->data;
     }

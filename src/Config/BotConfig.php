@@ -21,7 +21,7 @@ final class BotConfig
     /**
      * @throws Exception
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         return $this->config->$name ?? throw new Exception($name . ' - not found in ' . __CLASS__);
     }

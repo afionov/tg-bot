@@ -3,7 +3,7 @@
 namespace Bot\Mode\Quest\Entity;
 
 use Bot\Entity\Entity;
-use Bot\Entity\Helper\Attribute\ArrayOf;
+use Bot\Entity\Helper\Attribute\EntityCollection;
 
 class Step extends Entity
 {
@@ -12,12 +12,12 @@ class Step extends Entity
     /**
      * @var Content[]
      */
-    #[ArrayOf(Content::class)]
+    #[EntityCollection(Content::class)]
     public array $content;
 
     /**
      * @var Answer[]
      */
-    #[ArrayOf(Answer::class)]
+    #[EntityCollection(Answer::class)]
     public array $answer;
 }

@@ -28,8 +28,13 @@ final class Stash implements StashInterface
         return $this->path;
     }
 
-    public function get($key): mixed
+    public function get(string|int $key): mixed
     {
         return $this->data[$key];
+    }
+
+    public function set(string|int $key, mixed $value): void
+    {
+        $this->data[$key] = $value;
     }
 }

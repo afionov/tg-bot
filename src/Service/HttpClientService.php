@@ -26,9 +26,7 @@ final class HttpClientService
         $response = $this->client->sendRequest(
             new Request(
                 self::TELEGRAM_URL . $this->token . '/' . $command->getMethod(),
-                [
-                    RequestOptions::JSON => $command->toArray()
-                ]
+                $command->getBody()
             )
         );
 

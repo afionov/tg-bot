@@ -12,7 +12,7 @@ class Logger
         );
     }
 
-    public static function debug($fileName, $value)
+    public static function debug(string $fileName, mixed $value): void
     {
         file_put_contents(
             self::getLogsDirectory() . '/debug/' . $fileName . '.log',

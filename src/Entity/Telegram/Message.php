@@ -3,7 +3,7 @@
 namespace Bot\Entity\Telegram;
 
 use Bot\Entity\Entity;
-use Bot\Entity\Helper\Attribute\ArrayOf;
+use Bot\Entity\Helper\Attribute\EntityCollection;
 
 class Message extends Entity
 {
@@ -143,7 +143,7 @@ class Message extends Entity
      * Optional. For text messages, special entities like usernames,
      * URLs, bot commands, etc. that appear in the text
      */
-    #[ArrayOf(MessageEntity::class)]
+    #[EntityCollection(MessageEntity::class)]
     public array $entities;
 
     /**
@@ -169,7 +169,7 @@ class Message extends Entity
      * @var PhotoSize[]
      * Optional. Message is a photo, available sizes of the photo
      */
-    #[ArrayOf(PhotoSize::class)]
+    #[EntityCollection(PhotoSize::class)]
     public array $photo;
 
     /**
@@ -207,7 +207,7 @@ class Message extends Entity
      * Optional. For messages with a caption, special entities like usernames, URLs,
      * bot commands, etc. that appear in the caption
      */
-    #[ArrayOf(MessageEntity::class)]
+    #[EntityCollection(MessageEntity::class)]
     public array $caption_entities;
 
     /**
@@ -252,7 +252,7 @@ class Message extends Entity
      * Optional. New members that were added to the group
      * or supergroup and information about them (the bot itself may be one of these members)
      */
-    #[ArrayOf(User::class)]
+    #[EntityCollection(User::class)]
     public array $new_chat_members;
 
     /**
@@ -271,7 +271,7 @@ class Message extends Entity
      * @var PhotoSize[]
      * Optional. A chat photo was change to this value
      */
-    #[ArrayOf(PhotoSize::class)]
+    #[EntityCollection(PhotoSize::class)]
     public array $new_chat_photo;
 
     /**

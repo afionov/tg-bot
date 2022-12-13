@@ -2,7 +2,13 @@
 
 namespace Bot\Mode\Quest\Content;
 
-class Image
+use Bot\Service\HttpClient\Command\Command;
+use Bot\Service\HttpClient\Command\SendImage;
+
+final class Image extends Content
 {
-    public string $value;
+    public function getCommand(string|int $chatId): Command
+    {
+        return new SendImage($chatId, $this->value);
+    }
 }

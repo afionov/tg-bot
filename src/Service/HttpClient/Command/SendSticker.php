@@ -6,19 +6,27 @@ use Bot\Entity\Telegram\Message;
 
 class SendSticker extends Command
 {
-    protected string $text;
-
-    public function __construct()
-    {
+    public function __construct(
+        protected string|int $chatId,
+        protected string $sticker
+    ) {
     }
 
     public function getMethod(): string
     {
-        return 'sendMessage';
+        return 'sendSticker';
     }
 
     public function getResponseEntity(): string
     {
         return Message::class;
+    }
+
+    public function getBody(): array
+    {
+        return [
+            'chat_id' => $this->chatId,
+            'sticker' => $this->sticker
+        ];
     }
 }

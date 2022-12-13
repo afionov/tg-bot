@@ -2,7 +2,13 @@
 
 namespace Bot\Mode\Quest\Content;
 
-class Text
+use Bot\Service\HttpClient\Command\Command;
+use Bot\Service\HttpClient\Command\SendMessage;
+
+final class Text extends Content
 {
-    public string $value;
+    public function getCommand(string|int $chatId): Command
+    {
+        return new SendMessage($chatId, $this->value);
+    }
 }

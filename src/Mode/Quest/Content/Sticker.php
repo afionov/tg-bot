@@ -2,7 +2,13 @@
 
 namespace Bot\Mode\Quest\Content;
 
-class Sticker
+use Bot\Service\HttpClient\Command\Command;
+use Bot\Service\HttpClient\Command\SendSticker;
+
+final class Sticker extends Content
 {
-    public string $value;
+    public function getCommand(string|int $chatId): Command
+    {
+        return new SendSticker($chatId, $this->value);
+    }
 }
