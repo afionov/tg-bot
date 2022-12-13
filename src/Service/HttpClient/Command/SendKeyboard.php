@@ -15,21 +15,11 @@ class SendKeyboard extends SendMessage
         parent::__construct($chatId, 'Выберите ответ');
     }
 
-    public function getMethod(): string
-    {
-        return 'setChatMenuButton';
-    }
-
-    public function getResponseEntity(): string
-    {
-        return '';
-    }
-
     public function getBody(): array
     {
         return array_merge(parent::getBody(), [
-            'keyboard' => [
-                $this->buttonFormatter->format($this->buttonTexts)
+            'reply_markup' => [
+                'keyboard' => $this->buttonFormatter->format($this->buttonTexts)
             ]
         ]);
     }

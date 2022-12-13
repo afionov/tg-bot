@@ -30,7 +30,7 @@ final class Stash implements StashInterface
 
     public function get(string|int $key): mixed
     {
-        return $this->data[$key];
+        return $this->data[$key] ?? null;
     }
 
     public function set(string|int $key, mixed $value): void

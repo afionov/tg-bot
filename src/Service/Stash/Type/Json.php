@@ -7,6 +7,8 @@ use InvalidArgumentException;
 
 class Json implements StashTypeInterface
 {
+    protected const EMPTY_FILE_CONTENT = '[]';
+
     public function getExtension(): string
     {
         return 'json';
@@ -14,11 +16,7 @@ class Json implements StashTypeInterface
 
     public function createStash(string $path): Stash
     {
-        $content = file_get_contents($path);
-
-        if ($content === false) {
-            throw new InvalidArgumentException(sprintf('File "%s" is not readable', $path));
-        }
+        $content = $this->getFileContent($path);
 
         $result = json_decode($content, true);
 
@@ -35,6 +33,15 @@ class Json implements StashTypeInterface
             $stash->getPath(),
             $this->encodeData($stash->getData())
         );
+    }
+
+    protected function getFileContent($path): bool|string
+    {
+        if (!file_exists($path)) {
+            return self::EMPTY_FILE_CONTENT;
+        }
+
+        return file_get_contents($path);
     }
 
     protected function encodeData(array $data): string

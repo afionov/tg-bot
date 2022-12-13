@@ -16,9 +16,9 @@ class ButtonFormatter
             }
 
             $counter++;
-            $result[$key] = ['text' => $value];
+            $result[$key][] = ['text' => $value];
         }
 
-        return $result;
+        return array_values($result);
     }
 }

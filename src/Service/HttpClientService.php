@@ -4,6 +4,7 @@ namespace Bot\Service;
 
 use Bot\Log\Logger;
 use Bot\Service\HttpClient\Command\Command;
+use Bot\Service\HttpClient\Command\SendKeyboard;
 use Bot\Service\HttpClient\Request;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -30,7 +31,7 @@ final class HttpClientService
             )
         );
 
-        if($response->getStatusCode() !== 200) {
+        if ($response->getStatusCode() !== 200) {
             Logger::log($response->getReasonPhrase(), ['sent_entity' => $command->toArray()]);
         }
     }

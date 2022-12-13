@@ -8,7 +8,7 @@ use Bot\Service\Stash\Type\StashTypeFactory;
 
 final class StashService
 {
-    protected const STASH_PATH = __DIR__ . '/../../';
+    protected const STASH_PATH = __DIR__ . '/../../stash/quest/';
 
     protected array $stashes = [];
 

@@ -16,19 +16,19 @@ final class Progress
     protected ?Stash $stash;
 
     public function __construct(
-        protected string $username,
+        protected string $userId,
         protected readonly StashService $stashService,
         string $questHash
     ) {
         $this->stash = $this->stashService
             ->load(name: $questHash, index: self::STASH_INDEX)
             ->get(self::STASH_INDEX);
-        $userProgress = $this->stash->get($this->username);
+        $userProgress = $this->stash->get($this->userId);
 
         if (is_null($userProgress)) {
             return;
         }
-        
+
         $this->hasProgress = true;
         $this->currentStep = $userProgress;
     }
@@ -45,7 +45,7 @@ final class Progress
 
     public function updateProgress(Step $step): void
     {
-        $this->stash->set($this->username, $step->getId());
+        $this->stash->set($this->userId, $step->getId());
         $this->stash->save();
     }
 }

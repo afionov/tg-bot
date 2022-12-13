@@ -46,7 +46,7 @@ final class QuestMode implements ModeInterface
      */
     public function handleWebhook(WebhookUpdate $webhook): void
     {
-        $this->chatId = $webhook->message->from->username;
+        $this->chatId = $webhook->message->from->id;
         $this->progress = new Progress(
             $this->chatId,
             $this->stashService,
