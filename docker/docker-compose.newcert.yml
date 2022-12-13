@@ -8,7 +8,7 @@ services:
       context: ./php-fpm
     volumes:
       - ./../:/var/www
-      - /dev/null:/var/www/docker
+      - ./../../exclude:/var/www/docker
 
   nginx:
     container_name: nginx
