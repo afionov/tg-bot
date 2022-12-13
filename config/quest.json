@@ -1,0 +1,619 @@
+{
+  "start_id": "start",
+  "final_id": "final",
+  "start_message": "/start",
+  "steps": [
+    {
+      "id": "start",
+      "content": [
+        {
+          "type": "image",
+          "value": "https://tg-quest-bot.fionov.dev/img/kon.png"
+        },
+        {
+          "type": "text",
+          "value": "Ты наш маленький, но смелый газик! Совсем скоро новый год, а злой и мерзкий бажок пытается пробраться в продуктив и сломать все закупки!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Спасти продуктив",
+          "move": "second"
+        }
+      ]
+    },
+    {
+      "id": "second",
+      "content": [
+        {
+          "type": "text",
+          "value": "Что будешь делать в первую очередь?"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Протестировать бутылку шампанского.",
+          "move": "wrongSecond"
+        },
+        {
+          "value": "Протестировать процесс в тестовой среде.",
+          "move": "third"
+        },
+        {
+          "value": "Протестировать нервы окружающих.",
+          "move": "wrongSecond"
+        }
+      ]
+    },
+    {
+      "id": "wrongSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "А теперь?"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Протестировать бутылку шампанского.",
+          "move": "wrongSecond"
+        },
+        {
+          "value": "Протестировать процесс в тестовой среде.",
+          "move": "third"
+        },
+        {
+          "value": "Протестировать нервы окружающих.",
+          "move": "wrongSecond"
+        }
+      ]
+    },
+    {
+      "id": "third",
+      "content": [
+        {
+          "type": "text",
+          "value": "Бажок действительно хитёр! Воспроизвести не получилось, начинаются гневные звонки Марине... Что делаем дальше?"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Ложимся под ёлку и дрожим!",
+          "move": "wrongThirdFirst"
+        },
+        {
+          "value": "Подключаем коллег.",
+          "move": "wrongThirdSecond"
+        },
+        {
+          "value": "Проверяем целостность данных.",
+          "move": "fourth"
+        }
+      ]
+    },
+    {
+      "id": "wrongThirdFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "Неплохой вариант, но так продуктив не спасти!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Подключаем коллег.",
+          "move": "wrongThirdSecond"
+        },
+        {
+          "value": "Проверяем целостность данных.",
+          "move": "fourth"
+        }
+      ]
+    },
+    {
+      "id": "wrongThirdSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "Новый год на носу, в живых почти никого не осталось, вся надежда на тебя!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Ложимся под ёлку и дрожим!",
+          "move": "wrongThirdFirst"
+        },
+        {
+          "value": "Проверяем целостность данных.",
+          "move": "fourth"
+        }
+      ]
+    },
+    {
+      "id": "fourth",
+      "content": [
+        {
+          "type": "text",
+          "value": "Данные в порядке. В чем же проблема? Надо что то решать."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Продебажить код.",
+          "move": "fifth"
+        },
+        {
+          "value": "Достать учебник по математике за 4й класс.",
+          "move": "wrongFourthFirst"
+        },
+        {
+          "value": "Потянуться за новой порцией оливье.",
+          "move": "wrongFourthSecond"
+        },
+        {
+          "value": "Упасть лицом в заливное.",
+          "move": "wrongFourthThird"
+        }
+      ]
+    },
+    {
+      "id": "wrongFourthFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "Смешно, но Газику сейчас не до шуток!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Продебажить код.",
+          "move": "fifth"
+        },
+        {
+          "value": "Потянуться за новой порцией оливье.",
+          "move": "wrongFourthSecond"
+        },
+        {
+          "value": "Упасть лицом в заливное.",
+          "move": "wrongFourthThird"
+        }
+      ]
+    },
+    {
+      "id": "wrongFourthSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "Салатики подождут, спасаем продуктив!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Продебажить код.",
+          "move": "fifth"
+        },
+        {
+          "value": "Достать учебник по математике за 4й класс.",
+          "move": "wrongFourthFirst"
+        },
+        {
+          "value": "Упасть лицом в заливное.",
+          "move": "wrongFourthThird"
+        }
+      ]
+    },
+    {
+      "id": "wrongFourthThird",
+      "content": [
+        {
+          "type": "text",
+          "value": "Вставай, новый год почти рядом!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Продебажить код.",
+          "move": "fifth"
+        },
+        {
+          "value": "Достать учебник по математике за 4й класс.",
+          "move": "wrongFourthFirst"
+        },
+        {
+          "value": "Потянуться за новой порцией оливье.",
+          "move": "wrongFourthSecond"
+        }
+      ]
+    },
+    {
+      "id": "fifth",
+      "content": [
+        {
+          "type": "text",
+          "value": "Отладка кода показала необработанное исключение где-то в глубине. Как поступим?"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Бросить все и уйти досматривать Иронию судьбы.",
+          "move": "wrongFifthFirst"
+        },
+        {
+          "value": "Уволиться.",
+          "move": "wrongFifthSecond"
+        },
+        {
+          "value": "Посмотреть логи.",
+          "move": "sixth"
+        }
+      ]
+    },
+    {
+      "id": "wrongFifthFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "Уже 1000 раз видел, давай назад!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Уволиться.",
+          "move": "wrongFifthSecond"
+        },
+        {
+          "value": "Посмотреть логи.",
+          "move": "sixth"
+        }
+      ]
+    },
+    {
+      "id": "wrongFifthSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "Нет, ты нам слишком дорог, тебе не уйти!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Бросить все и уйти досматривать Иронию судьбы.",
+          "move": "wrongFifthFirst"
+        },
+        {
+          "value": "Посмотреть логи.",
+          "move": "sixth"
+        }
+      ]
+    },
+    {
+      "id": "sixth",
+      "content": [
+        {
+          "type": "text",
+          "value": "Ага, бажок не так уж и хитер, похоже, попался! С довольной ухмылкой ты хочешь закончить начатое."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Вводим команду rm -rf /",
+          "move": "wrongSixthFirst"
+        },
+        {
+          "value": "Исправляем ошибку.",
+          "move": "seventh"
+        },
+        {
+          "value": "Выполняем DROP DATABASE!",
+          "move": "wrongSixthSecond"
+        }
+      ]
+    },
+    {
+      "id": "wrongSixthFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "У тебя недостаточно прав, администратор все предусмотрел."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Исправляем ошибку.",
+          "move": "seventh"
+        },
+        {
+          "value": "Выполняем DROP DATABASE!",
+          "move": "wrongSixthSecond"
+        }
+      ]
+    },
+    {
+      "id": "wrongSixthSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "Зачем пакостничаешь, сейчас откатим."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Вводим команду rm -rf /",
+          "move": "wrongSixthFirst"
+        },
+        {
+          "value": "Исправляем ошибку.",
+          "move": "seventh"
+        }
+      ]
+    },
+    {
+      "id": "seventh",
+      "content": [
+        {
+          "type": "text",
+          "value": "Газик решил проблему, надо теперь отчитаться."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Обвинить во всем АСЭЗ.",
+          "move": "wrongSeventhFirst"
+        },
+        {
+          "value": "Объяснить, что это старая ошибка, которую до сих пор не замечали.",
+          "move": "eighth"
+        },
+        {
+          "value": "СКО.... такой СКО...",
+          "move": "wrongSeventhSecond"
+        },
+        {
+          "value": "Попрыгать.",
+          "move": "wrongSeventhThird"
+        }
+      ]
+    },
+    {
+      "id": "wrongSeventhFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "Логично, но в этот раз они ни причем."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Объяснить, что это старая ошибка, которую до сих пор не замечали.",
+          "move": "eighth"
+        },
+        {
+          "value": "СКО.... такой СКО...",
+          "move": "wrongSeventhSecond"
+        },
+        {
+          "value": "Попрыгать.",
+          "move": "wrongSeventhThird"
+        }
+      ]
+    },
+    {
+      "id": "wrongSeventhSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "НО НО НО! С СКО все отлично! Даже не думай его обвинять!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Обвинить во всем АСЭЗ.",
+          "move": "wrongSeventhFirst"
+        },
+        {
+          "value": "Объяснить, что это старая ошибка, которую до сих пор не замечали.",
+          "move": "eighth"
+        },
+        {
+          "value": "Попрыгать.",
+          "move": "wrongSeventhThird"
+        }
+      ]
+    },
+    {
+      "id": "wrongSeventhThird",
+      "content": [
+        {
+          "type": "text",
+          "value": "Ну попрыгай, только отчитаться все еще нужно."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Обвинить во всем АСЭЗ.",
+          "move": "wrongSeventhFirst"
+        },
+        {
+          "value": "Объяснить, что это старая ошибка, которую до сих пор не замечали.",
+          "move": "eighth"
+        },
+        {
+          "value": "СКО.... такой СКО...",
+          "move": "wrongSeventhSecond"
+        }
+      ]
+    },
+    {
+      "id": "eighth",
+      "content": [
+        {
+          "type": "text",
+          "value": "Теперь надо найти Яковлева и залить спасительную таблетку хотфикса на продуктив. Что будешь делать?"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Позвонить.",
+          "move": "wrongEighthFirst"
+        },
+        {
+          "value": "Вызвать через духов.",
+          "move": "wrongEighthSecond"
+        },
+        {
+          "value": "Написать в скайп.",
+          "move": "wrongEighthThird"
+        },
+        {
+          "value": "Помолиться святому девопсу и позвонить Яковлеву.",
+          "move": "ninth"
+        }
+      ]
+    },
+    {
+      "id": "wrongEighthFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "Ну конечно, он недоступен."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Вызвать через духов.",
+          "move": "wrongEighthSecond"
+        },
+        {
+          "value": "Написать в скайп.",
+          "move": "wrongEighthThird"
+        },
+        {
+          "value": "Помолиться святому девопсу и позвонить Яковлеву.",
+          "move": "ninth"
+        }
+      ]
+    },
+    {
+      "id": "wrongEighthSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "Не отвечает."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Позвонить.",
+          "move": "wrongEighthFirst"
+        },
+        {
+          "value": "Написать в скайп.",
+          "move": "wrongEighthThird"
+        },
+        {
+          "value": "Помолиться святому девопсу и позвонить Яковлеву.",
+          "move": "ninth"
+        }
+      ]
+    },
+    {
+      "id": "wrongEighthThird",
+      "content": [
+        {
+          "type": "text",
+          "value": "Нет ответа."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Позвонить.",
+          "move": "wrongEighthFirst"
+        },
+        {
+          "value": "Вызвать через духов.",
+          "move": "wrongEighthSecond"
+        },
+        {
+          "value": "Помолиться святому девопсу и позвонить Яковлеву.",
+          "move": "ninth"
+        }
+      ]
+    },
+    {
+      "id": "ninth",
+      "content": [
+        {
+          "type": "text",
+          "value": "Громко ругающийся дядя Яковлев залил хотфикс на прод. Газик счастливый смотрит на бегущую стрелку часов, праздник уже вот-вот придет! Заглянув в окно - мы видим Деда Мороза."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Отдавай подарки и проваливай.",
+          "move": "wrongNinthFirst"
+        },
+        {
+          "value": "Здравствуй, дедушка!",
+          "move": "final"
+        },
+        {
+          "value": "Там, надеюсь, в мешке не баги.",
+          "move": "wrongNinthSecond"
+        }
+      ]
+    },
+    {
+      "id": "wrongNinthFirst",
+      "content": [
+        {
+          "type": "text",
+          "value": "Газик воспитанный и добрый, выбери другое!"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Здравствуй, дедушка!",
+          "move": "final"
+        },
+        {
+          "value": "Там, надеюсь, в мешке не баги.",
+          "move": "wrongNinthSecond"
+        }
+      ]
+    },
+    {
+      "id": "wrongNinthSecond",
+      "content": [
+        {
+          "type": "text",
+          "value": "Нет, хватит с нас багов."
+        }
+      ],
+      "answer": [
+        {
+          "value": "Отдавай подарки и проваливай.",
+          "move": "wrongNinthFirst"
+        },
+        {
+          "value": "Здравствуй, дедушка!",
+          "move": "final"
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "content": [
+        {
+          "type": "text",
+          "value": "Ты хорошо себя вел в этом году, площадка цветет и пахнет! За смелость против мерзкого бажка и все достижения в этом году - получи подарок! С новым годом!"
+        },
+        {
+          "type": "sticker",
+          "value": ""
+        }
+      ],
+      "answer": [
+      ]
+    }
+  ]
+}
