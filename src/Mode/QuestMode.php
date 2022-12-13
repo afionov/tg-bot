@@ -94,10 +94,12 @@ final class QuestMode implements ModeInterface
         if (!empty($currentMessage)) {
             $moveToStep = $step->getStepIdToMoveByMessage($currentMessage);
             $step = $this->stepCollection->getStepById($moveToStep);
+
             if (!isset($step)) {
                 throw new UnknownMessageException($currentMessage);
             }
         }
+
         $step->send($this->httpClient, $this->chatId);
         $this->progress->updateProgress($step);
     }

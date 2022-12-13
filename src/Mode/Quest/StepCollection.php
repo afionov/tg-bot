@@ -13,7 +13,7 @@ final class StepCollection
                 throw new \InvalidArgumentException(
                     sprintf(
                         'Array item %s must be an instance of %s',
-                        $value,
+                        json_encode($value),
                         Step::class
                     )
                 );

@@ -8,7 +8,8 @@ class Logger
     {
         file_put_contents(
             self::getLogsDirectory() . '/php-log.log',
-            self::getLogMessagePrefix() . $text . '. Parameters: ' . print_r($parameters, true)
+            self::getLogMessagePrefix() . $text . '. Parameters: ' . var_export($parameters, true) . PHP_EOL,
+            FILE_APPEND
         );
     }
 
@@ -27,6 +28,7 @@ class Logger
 
     protected static function getLogMessagePrefix(): string
     {
+        date_default_timezone_set('Europe/Moscow');
         return date('Y-m-d H:i:s', time()) . ' : ';
     }
 }

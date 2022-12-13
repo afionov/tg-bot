@@ -12,11 +12,11 @@ final class Bot
 {
     /**
      * @param string $token
-     * @param ModeInterface $modeService
+     * @param ModeInterface $mode
      */
     public function __construct(
         protected string        $token,
-        protected ModeInterface $modeService
+        protected ModeInterface $mode
     ) {
     }
 
@@ -24,7 +24,7 @@ final class Bot
     {
         try {
             $webhookMessage = Hydrator::hydrateFromRequest(new WebhookUpdate);
-            $this->modeService->handleWebhook($webhookMessage);
+            $this->mode->handleWebhook($webhookMessage);
         } catch(Throwable $e) {
             Logger::log($e->getMessage() . PHP_EOL . $e->getTraceAsString());
         }

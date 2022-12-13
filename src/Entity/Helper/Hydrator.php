@@ -32,8 +32,12 @@ final class Hydrator
         foreach ($reflectionClass->getProperties() as $property) {
             $name = $property->getName();
 
+            if (!isset($source[$name])) {
+                continue;
+            }
+
             try {
-                $entity->$name = self::hydrateProperty($property, $source['name']);
+                $entity->$name = self::hydrateProperty($property, $source[$name]);
             } catch (UnsupportedTypeException $e) {
                 throw new InvalidEntityException($entity::class, $e->getMessage());
             }
@@ -98,17 +102,17 @@ final class Hydrator
     protected static function hydratePropertyByAttributes(array $attributes, mixed $value): mixed
     {
         $propertyValue = $value;
-
         /**
          * @var ReflectionAttribute $attribute
          */
         foreach ($attributes as $attribute) {
-            if (!$attribute->getName() instanceof AttributeInterface) {
+            $attributeInstance = $attribute->newInstance();
+
+            if (!$attributeInstance instanceof AttributeInterface) {
                 continue;
             }
 
-            $propertyValue = $attribute->newInstance()
-                ->getWorker()
+            $propertyValue = $attributeInstance->getWorker()
                 ->handle($propertyValue);
         }
 
