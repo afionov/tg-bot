@@ -1,8 +1,45 @@
 {
   "start_id": "start",
   "final_id": "final",
-  "start_message": "/start",
+  "commands": {
+    "/start": "\\Bot\\Mode\\Quest\\Command\\StartCommand",
+    "/invokestep": "\\Bot\\Mode\\Quest\\Command\\InvokeStepCommand",
+    "/restart": "\\Bot\\Mode\\Quest\\Command\\RestartCommand"
+  },
+  "already_in_progress_step": "alreadyInProgress",
+  "unknown_command_step": "UnknownCommandStep",
+  "button_format_strategy": "\\Bot\\Mode\\Quest\\Button\\Format\\TwoPerLineFormat",
   "steps": [
+    {
+      "id": "alreadyInProgress",
+      "content": [
+        {
+          "type": "text",
+          "value": "Уже имеется прогресс по квесту, воспользуйтесь командой /invokestep - что бы восстановить текущий шаг или /restart - что бы начать заново"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Начать заново",
+          "move": "start"
+        }
+      ]
+    },
+    {
+      "id": "UnknownCommandStep",
+      "content": [
+        {
+          "type": "text",
+          "value": "Неизвестная команда, воспользуйтесь командой /invokestep - что бы восстановить текущий шаг или /restart - что бы начать заново"
+        }
+      ],
+      "answer": [
+        {
+          "value": "Начать заново",
+          "move": "start"
+        }
+      ]
+    },
     {
       "id": "start",
       "content": [
@@ -608,11 +645,15 @@
           "value": "Ты хорошо себя вел в этом году, площадка цветет и пахнет! За смелость против мерзкого бажка и все достижения в этом году - получи подарок! С новым годом!"
         },
         {
-          "type": "sticker",
-          "value": ""
+          "type": "text",
+          "value": "Тут должен быть стикер"
         }
       ],
       "answer": [
+        {
+          "value": "Хочу пройти еще раз",
+          "move": "start"
+        }
       ]
     }
   ]

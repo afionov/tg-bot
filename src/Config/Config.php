@@ -2,7 +2,7 @@
 
 namespace Bot\Config;
 
-use Bot\General\ArrayableInterface;
+use Bot\ArrayableInterface;
 
 final class Config implements ArrayableInterface
 {

@@ -3,8 +3,12 @@
 namespace Bot\Mode\Quest;
 
 use Bot\Mode\Quest\Answer\Answer;
+use Bot\Mode\Quest\Button\Format\ButtonFormatFactory;
+use Bot\Mode\Quest\Button\Format\ButtonFormatStrategy;
+use Bot\Mode\Quest\Button\Format\TwoPerLineFormat;
 use Bot\Mode\Quest\Content\Content;
 use Bot\Mode\Quest\Content\ContentFactory;
+use Bot\Mode\Quest\Content\ContentTypeEnum;
 use Bot\Service\HttpClient\Command\SendKeyboard;
 use Bot\Service\HttpClientService;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -14,6 +18,28 @@ final class Step
     protected string $id;
 
     protected array $content = [];
+
+    protected array $answers = [];
+
+    public static function fromEntity(Entity\Step $stepEntity, ButtonFormatStrategy $buttonFormatStrategy): Step
+    {
+        return new Step($stepEntity, $buttonFormatStrategy);
+    }
+
+    protected function __construct(
+        Entity\Step $stepEntity,
+        protected ButtonFormatStrategy $buttonFormatStrategy
+    ) {
+        $this->id = $stepEntity->id;
+
+        foreach ($stepEntity->answer as $answer) {
+            $this->answers[] = Answer::createFromEntity($answer);
+        }
+
+        foreach ($stepEntity->content as $content) {
+            $this->content[] = ContentFactory::make($content);
+        }
+    }
 
     /**
      * @return array|Content[]
@@ -31,11 +57,9 @@ final class Step
         return $this->answers;
     }
 
-    protected array $answers = [];
-
-    public static function fromEntity(Entity\Step $stepEntity): Step
+    public function getId(): string
     {
-        return new Step($stepEntity);
+        return $this->id;
     }
 
     /**
@@ -46,7 +70,14 @@ final class Step
      */
     public function send(HttpClientService $httpClientService, string|int $chatId): void
     {
-        foreach ($this->getContent() as $content) {
+        $contents = $this->getContent();
+        $lastContent = array_pop($contents);
+
+        if (is_null($lastContent)) {
+            return;
+        }
+
+        foreach ($contents as $content) {
             $httpClientService->sendCommand($content->getCommand($chatId));
         }
 
@@ -56,25 +87,24 @@ final class Step
             $answers[] = $answer->getButtonText();
         }
 
+        if ($lastContent->getType() !== ContentTypeEnum::Text) {
+            $httpClientService->sendCommand($lastContent->getCommand($chatId));
+            $lastContent = null;
+        }
+
         if (empty($answers)) {
+            if (isset($lastContent)) {
+                $httpClientService->sendCommand($lastContent->getCommand($chatId));
+            }
             return;
         }
 
-        //TODO: strategy on button formatter
-        $httpClientService->sendCommand(new SendKeyboard($chatId, $answers, new ButtonFormatter()));
-    }
-
-    protected function __construct(Entity\Step $stepEntity)
-    {
-        $this->id = $stepEntity->id;
-
-        foreach ($stepEntity->answer as $answer) {
-            $this->answers[] = Answer::createFromEntity($answer);
-        }
-
-        foreach ($stepEntity->content as $content) {
-            $this->content[] = ContentFactory::make($content);
-        }
+        $httpClientService->sendCommand(new SendKeyboard(
+            $chatId,
+            isset($lastContent) ? $lastContent->value : 'Выберите ответ',
+            $answers,
+            new TwoPerLineFormat()
+        ));
     }
 
     public function getStepIdToMoveByMessage(string $message): string
@@ -86,10 +116,5 @@ final class Step
         }
 
         throw new \RuntimeException('Не найдено сообщение');
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 }

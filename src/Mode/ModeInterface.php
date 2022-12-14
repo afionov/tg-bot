@@ -2,9 +2,12 @@
 
 namespace Bot\Mode;
 
-use Bot\Entity\WebhookUpdate;
+use Bot\Service\Hydrator\HydratableInterface;
+use Bot\Service\HydratorService;
 
 interface ModeInterface
 {
-    public function handleWebhook(WebhookUpdate $webhook): void;
+    public function handleWebhook(HydratableInterface $webhook): void;
+
+    public function getModeHydrator(): HydratorService;
 }

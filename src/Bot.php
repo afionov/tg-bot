@@ -2,11 +2,8 @@
 
 namespace Bot;
 
-use Bot\Entity\Helper\Hydrator;
 use Bot\Entity\WebhookUpdate;
-use Bot\Log\Logger;
 use Bot\Mode\ModeInterface;
-use Throwable;
 
 final class Bot
 {
@@ -22,11 +19,11 @@ final class Bot
 
     public function handleWebhook(): void
     {
-        try {
-            $webhookMessage = Hydrator::hydrateFromRequest(new WebhookUpdate);
-            $this->mode->handleWebhook($webhookMessage);
-        } catch(Throwable $e) {
-            Logger::log($e->getMessage() . PHP_EOL . $e->getTraceAsString());
-        }
+        $requestData = file_get_contents('php://input');
+        $webhookMessage = $this->mode
+            ->getModeHydrator()
+            ->hydrate(WebhookUpdate::class, json_decode($requestData, true));
+
+        $this->mode->handleWebhook($webhookMessage);
     }
 }

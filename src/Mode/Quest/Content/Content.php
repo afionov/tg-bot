@@ -12,4 +12,6 @@ abstract class Content
     }
 
     abstract public function getCommand(string|int $chatId): Command;
+
+    abstract public function getType(): ContentTypeEnum;
 }

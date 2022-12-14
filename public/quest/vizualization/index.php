@@ -30,10 +30,6 @@ if (!isset($_GET['pass']) || $_GET['pass'] !== 'etpgpb-ml') {
 <div style="display: flex;align-content: center;flex-direction: column;align-items: center;">
     <div style="display: block;padding-bottom: 20px;">
         <div style="display: flex;">
-            <div>Стартовое сообщение: </div>
-            <div id="start_message" style="padding-left: 5px;"></div>
-        </div>
-        <div style="display: flex;">
             <div>ID стартового шага: </div>
             <div id="start_id" style="padding-left: 5px;"></div>
         </div>
@@ -45,7 +41,6 @@ if (!isset($_GET['pass']) || $_GET['pass'] !== 'etpgpb-ml') {
     <canvas id="graphDiv" width="900" height="900" style="border: solid 2px black;"></canvas>
 </div>
 <script>
-    document.getElementById('start_message').innerHTML = quest.start_message;
     document.getElementById('start_id').innerHTML = quest.start_id;
     document.getElementById('final_id').innerHTML = quest.final_id;
 

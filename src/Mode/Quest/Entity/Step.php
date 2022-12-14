@@ -3,7 +3,7 @@
 namespace Bot\Mode\Quest\Entity;
 
 use Bot\Entity\Entity;
-use Bot\Entity\Helper\Attribute\EntityCollection;
+use Bot\Service\Hydrator\EntityHydrator\Attribute\EntityCollection;
 
 class Step extends Entity
 {

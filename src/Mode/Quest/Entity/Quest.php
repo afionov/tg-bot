@@ -3,7 +3,7 @@
 namespace Bot\Mode\Quest\Entity;
 
 use Bot\Entity\Entity;
-use Bot\Entity\Helper\Attribute\EntityCollection;
+use Bot\Service\Hydrator\EntityHydrator\Attribute\EntityCollection;
 
 class Quest extends Entity
 {
@@ -16,6 +16,26 @@ class Quest extends Entity
      * @var string
      */
     public string $final_id;
+
+    /**
+     * @var array
+     */
+    public array $commands;
+
+    /**
+     * @var string
+     */
+    public string $button_format_strategy;
+
+    /**
+     * @var string
+     */
+    public string $already_in_progress_step;
+
+    /**
+     * @var string
+     */
+    public string $unknown_command_step;
 
     /**
      * @var Step[]

@@ -2,7 +2,7 @@
 
 namespace Bot\Service\HttpClient\Command;
 
-use Bot\General\ArrayableInterface;
+use Bot\ArrayableInterface;
 
 abstract class Command implements ArrayableInterface
 {

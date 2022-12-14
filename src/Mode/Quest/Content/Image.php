@@ -11,4 +11,9 @@ final class Image extends Content
     {
         return new SendImage($chatId, $this->value);
     }
+
+    public function getType(): ContentTypeEnum
+    {
+        return ContentTypeEnum::Image;
+    }
 }

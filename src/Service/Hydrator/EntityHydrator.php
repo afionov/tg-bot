@@ -1,32 +1,32 @@
 <?php
 
-namespace Bot\Entity\Helper;
+namespace Bot\Service\Hydrator;
 
 use Bot\Entity\Entity;
 use Bot\Entity\Exception\InvalidEntityException;
 use Bot\Entity\Exception\UnsupportedTypeException;
-use Bot\Entity\Helper\Attribute\AttributeInterface;
+use Bot\Service\Hydrator\EntityHydrator\Attribute\AttributeInterface;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionNamedType;
 use ReflectionProperty;
 
-final class Hydrator
+final class EntityHydrator implements HydratorInterface
 {
     /**
-     * @param Entity|string $entity
+     * @param HydratableInterface|string $hydratable
      * @param array $source
      * @return Entity
      * @throws InvalidEntityException
      * @throws ReflectionException
      */
-    public static function hydrate(Entity|string $entity, array $source): Entity
+    public function hydrate(HydratableInterface|string $hydratable, array $source): Entity
     {
-        $reflectionClass = new ReflectionClass($entity);
+        $reflectionClass = new ReflectionClass($hydratable);
 
-        if (is_string($entity)) {
-            $entity = $reflectionClass->newInstanceWithoutConstructor();
+        if (is_string($hydratable)) {
+            $hydratable = $reflectionClass->newInstanceWithoutConstructor();
         }
 
         foreach ($reflectionClass->getProperties() as $property) {
@@ -37,29 +37,13 @@ final class Hydrator
             }
 
             try {
-                $entity->$name = self::hydrateProperty($property, $source[$name]);
+                $hydratable->$name = $this->hydrateProperty($property, $source[$name]);
             } catch (UnsupportedTypeException $e) {
-                throw new InvalidEntityException($entity::class, $e->getMessage());
+                throw new InvalidEntityException($hydratable::class, $e->getMessage());
             }
         }
 
-        return $entity;
-    }
-
-    /**
-     * @param Entity|string $entity
-     * @return Entity
-     * @throws InvalidEntityException
-     * @throws ReflectionException
-     */
-    public static function hydrateFromRequest(Entity|string $entity): Entity
-    {
-        $requestData = file_get_contents('php://input');
-
-        return self::hydrate(
-            $entity,
-            json_decode($requestData, true)
-        );
+        return $hydratable;
     }
 
     /**
@@ -70,7 +54,7 @@ final class Hydrator
      * @throws ReflectionException
      * @throws UnsupportedTypeException
      */
-    protected static function hydrateProperty(ReflectionProperty $property, mixed $value): mixed
+    protected function hydrateProperty(ReflectionProperty $property, mixed $value): mixed
     {
         $type = $property->getType();
 
@@ -81,7 +65,7 @@ final class Hydrator
         $propertyAttributes = $property->getAttributes();
 
         if (!empty($propertyAttributes)) {
-            return self::hydratePropertyByAttributes($propertyAttributes, $value);
+            return $this->hydratePropertyByAttributes($propertyAttributes, $value);
         }
 
         if ($type->isBuiltin()) {
@@ -91,7 +75,7 @@ final class Hydrator
         $typeName = $type->getName();
         $entity = new $typeName();
 
-        return self::hydrate($entity, $value);
+        return $this->hydrate($entity, $value);
     }
 
     /**
@@ -99,7 +83,7 @@ final class Hydrator
      * @param mixed $value
      * @return mixed
      */
-    protected static function hydratePropertyByAttributes(array $attributes, mixed $value): mixed
+    protected function hydratePropertyByAttributes(array $attributes, mixed $value): mixed
     {
         $propertyValue = $value;
         /**

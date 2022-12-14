@@ -2,9 +2,7 @@
 
 namespace Bot\Service;
 
-use Bot\Log\Logger;
 use Bot\Service\HttpClient\Command\Command;
-use Bot\Service\HttpClient\Command\SendKeyboard;
 use Bot\Service\HttpClient\Request;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -15,7 +13,8 @@ final class HttpClientService
 
     public function __construct(
         protected string $token,
-        protected ClientInterface $client
+        protected ClientInterface $client,
+        protected LoggerService $loggerService
     ) {
     }
 
@@ -32,7 +31,10 @@ final class HttpClientService
         );
 
         if ($response->getStatusCode() !== 200) {
-            Logger::log($response->getReasonPhrase(), ['sent_entity' => $command->toArray()]);
+            $this->loggerService->error($response->getReasonPhrase(), [
+                'sent_entity' => $command->toArray(),
+                'response_body' => $response->getBody()->getContents()
+            ]);
         }
     }
 }

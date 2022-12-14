@@ -1,23 +1,20 @@
 <?php
 
-namespace Bot\Entity\Helper\Attribute\Worker;
+namespace Bot\Service\Hydrator\EntityHydrator\Attribute\Worker;
 
-use Bot\Entity\Exception\InvalidEntityException;
-use Bot\Entity\Helper\Hydrator;
-use ReflectionException;
+use Bot\Service\HydratorService;
 
 final class EntityCollectionWorker implements WorkerInterface
 {
     public function __construct(
-        protected string $entityClassName
+        protected string $entityClassName,
+        protected HydratorService $hydratorService
     ) {
     }
 
     /**
      * @param mixed $value
      * @return array
-     * @throws InvalidEntityException
-     * @throws ReflectionException
      */
     public function handle(mixed $value): array
     {
@@ -28,7 +25,7 @@ final class EntityCollectionWorker implements WorkerInterface
         $result = [];
 
         foreach ($value as $innerValue) {
-            $result[] = Hydrator::hydrate($this->entityClassName, $innerValue);
+            $result[] = $this->hydratorService->hydrate($this->entityClassName, $innerValue);
         }
 
         return $result;

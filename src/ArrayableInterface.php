@@ -1,6 +1,6 @@
 <?php
 
-namespace Bot\General;
+namespace Bot;
 
 interface ArrayableInterface
 {

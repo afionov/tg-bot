@@ -11,4 +11,9 @@ final class Sticker extends Content
     {
         return new SendSticker($chatId, $this->value);
     }
+
+    public function getType(): ContentTypeEnum
+    {
+        return ContentTypeEnum::Sticker;
+    }
 }

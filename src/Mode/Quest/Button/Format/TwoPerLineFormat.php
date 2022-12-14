@@ -1,16 +1,16 @@
 <?php
 
-namespace Bot\Mode\Quest;
+namespace Bot\Mode\Quest\Button\Format;
 
-class ButtonFormatter
+final class TwoPerLineFormat implements ButtonFormatStrategy
 {
-    public function format(array $array): array
+    public function format(array $buttonsArray): array
     {
         $counter = 0;
         $key = 0;
         $result = [];
 
-        foreach ($array as $value) {
+        foreach ($buttonsArray as $value) {
             if ($counter % 2 === 0) {
                 $key++;
             }

@@ -2,9 +2,10 @@
 
 namespace Bot\Entity;
 
-use Bot\General\ArrayableInterface;
+use Bot\ArrayableInterface;
+use Bot\Service\Hydrator\HydratableInterface;
 
-abstract class Entity implements ArrayableInterface
+abstract class Entity implements ArrayableInterface, HydratableInterface
 {
     final public function toArray(): array
     {

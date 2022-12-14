@@ -1,6 +1,6 @@
 <?php
 
-namespace Bot\Entity\Helper\Attribute\Worker;
+namespace Bot\Service\Hydrator\EntityHydrator\Attribute\Worker;
 
 interface WorkerInterface
 {

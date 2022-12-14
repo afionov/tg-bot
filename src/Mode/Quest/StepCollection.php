@@ -2,9 +2,11 @@
 
 namespace Bot\Mode\Quest;
 
+use Bot\Mode\Quest\Button\Format\ButtonFormatStrategy;
+
 final class StepCollection
 {
-    public static function createFromArray(array $array): StepCollection
+    public static function createFromArray(array $array, ButtonFormatStrategy $buttonFormatStrategy): StepCollection
     {
         $result = [];
 
@@ -19,7 +21,7 @@ final class StepCollection
                 );
             }
 
-            $result[$value->id] = Step::fromEntity($value);
+            $result[$value->id] = Step::fromEntity($value, $buttonFormatStrategy);
         }
 
         return new StepCollection($result);

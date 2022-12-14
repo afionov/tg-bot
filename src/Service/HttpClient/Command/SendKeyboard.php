@@ -2,17 +2,18 @@
 
 namespace Bot\Service\HttpClient\Command;
 
-use Bot\Mode\Quest\ButtonFormatter;
+use Bot\Mode\Quest\Button\Format\ButtonFormatStrategy;
 
 class SendKeyboard extends SendMessage
 {
     public function __construct(
         int|string $chatId,
+        string $text,
         protected array $buttonTexts,
-        protected ButtonFormatter $buttonFormatter
+        protected ButtonFormatStrategy $buttonFormatter
     )
     {
-        parent::__construct($chatId, 'Выберите ответ');
+        parent::__construct($chatId, $text);
     }
 
     public function getBody(): array

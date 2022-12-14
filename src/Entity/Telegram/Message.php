@@ -3,7 +3,7 @@
 namespace Bot\Entity\Telegram;
 
 use Bot\Entity\Entity;
-use Bot\Entity\Helper\Attribute\EntityCollection;
+use Bot\Service\Hydrator\EntityHydrator\Attribute\EntityCollection;
 
 class Message extends Entity
 {

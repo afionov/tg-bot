@@ -11,4 +11,9 @@ final class Text extends Content
     {
         return new SendMessage($chatId, $this->value);
     }
+
+    public function getType(): ContentTypeEnum
+    {
+        return ContentTypeEnum::Text;
+    }
 }
