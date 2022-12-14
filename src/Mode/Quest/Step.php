@@ -3,7 +3,6 @@
 namespace Bot\Mode\Quest;
 
 use Bot\Mode\Quest\Answer\Answer;
-use Bot\Mode\Quest\Button\Format\ButtonFormatFactory;
 use Bot\Mode\Quest\Button\Format\ButtonFormatStrategy;
 use Bot\Mode\Quest\Button\Format\TwoPerLineFormat;
 use Bot\Mode\Quest\Content\Content;
@@ -21,22 +20,22 @@ final class Step
 
     protected array $answers = [];
 
-    public static function fromEntity(Entity\Step $stepEntity, ButtonFormatStrategy $buttonFormatStrategy): Step
+    public static function fromDTO(DTO\Step $step, ButtonFormatStrategy $buttonFormatStrategy): Step
     {
-        return new Step($stepEntity, $buttonFormatStrategy);
+        return new Step($step, $buttonFormatStrategy);
     }
 
     protected function __construct(
-        Entity\Step $stepEntity,
+        DTO\Step                       $stepDTO,
         protected ButtonFormatStrategy $buttonFormatStrategy
     ) {
-        $this->id = $stepEntity->id;
+        $this->id = $stepDTO->id;
 
-        foreach ($stepEntity->answer as $answer) {
-            $this->answers[] = Answer::createFromEntity($answer);
+        foreach ($stepDTO->answer as $answer) {
+            $this->answers[] = Answer::createFromDTO($answer);
         }
 
-        foreach ($stepEntity->content as $content) {
+        foreach ($stepDTO->content as $content) {
             $this->content[] = ContentFactory::make($content);
         }
     }

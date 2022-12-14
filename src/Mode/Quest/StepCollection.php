@@ -11,7 +11,7 @@ final class StepCollection
         $result = [];
 
         foreach ($array as $value) {
-            if (!$value instanceof Entity\Step) {
+            if (!$value instanceof DTO\Step) {
                 throw new \InvalidArgumentException(
                     sprintf(
                         'Array item %s must be an instance of %s',
@@ -21,7 +21,7 @@ final class StepCollection
                 );
             }
 
-            $result[$value->id] = Step::fromEntity($value, $buttonFormatStrategy);
+            $result[$value->id] = Step::fromDTO($value, $buttonFormatStrategy);
         }
 
         return new StepCollection($result);

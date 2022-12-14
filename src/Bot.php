@@ -2,28 +2,48 @@
 
 namespace Bot;
 
-use Bot\Entity\WebhookUpdate;
-use Bot\Mode\ModeInterface;
+use Bot\Command\CommandFactory;
+use Bot\Config\Config;
+use Bot\DI\ServiceLocator;
+use Bot\DTO\WebhookUpdate;
+use Bot\Interfaces\WebhookHandlerInterface;
+use Bot\Mode\ModeFactory;
+use Bot\Service\HydratorService;
 
 final class Bot
 {
-    /**
-     * @param string $token
-     * @param ModeInterface $mode
-     */
-    public function __construct(
-        protected string        $token,
-        protected ModeInterface $mode
-    ) {
+    public static string $token = '';
+
+    protected string $modeClass;
+
+    protected array $commands;
+
+    public function __construct(Config $config)
+    {
+        self::$token = $config->get('token');
+        $this->modeClass = $config->get('mode');
+        $this->commands = $config->get('commands');
+        ServiceLocator::init();
     }
 
     public function handleWebhook(): void
     {
         $requestData = file_get_contents('php://input');
-        $webhookMessage = $this->mode
-            ->getModeHydrator()
-            ->hydrate(WebhookUpdate::class, json_decode($requestData, true));
 
-        $this->mode->handleWebhook($webhookMessage);
+        /**
+         * @var WebhookUpdate $webhookMessage
+         */
+        $webhookMessage = ServiceLocator::get(HydratorService::class)
+            ->hydrate(WebhookUpdate::class, json_decode($requestData, true));
+        $text = $webhookMessage->message->text;
+
+        /**
+         * @var WebhookHandlerInterface $handler
+         */
+        $handler = isset($this->commands[$text])
+            ? CommandFactory::make($this->commands[$text])
+            : ModeFactory::make($this->modeClass);
+
+        $handler->handleWebhook($webhookMessage);
     }
 }

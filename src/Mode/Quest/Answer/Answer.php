@@ -10,7 +10,7 @@ class Answer implements AnswerInterface
     ) {
     }
 
-    public static function createFromEntity(\Bot\Mode\Quest\Entity\Answer $answer): Answer
+    public static function createFromDTO(\Bot\Mode\Quest\DTO\Answer $answer): Answer
     {
         return new Answer($answer->value, $answer->move);
     }

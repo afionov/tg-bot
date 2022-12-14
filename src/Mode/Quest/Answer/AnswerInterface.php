@@ -6,5 +6,5 @@ interface AnswerInterface
 {
     public function getButtonText(): string;
 
-    public static function createFromEntity(\Bot\Mode\Quest\Entity\Answer $answer);
+    public static function createFromDTO(\Bot\Mode\Quest\DTO\Answer $answer);
 }

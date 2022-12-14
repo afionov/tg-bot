@@ -2,27 +2,15 @@
 
 namespace Bot\Config;
 
-use Exception;
-
 /**
  * @property-read string $token
- * @property-read array $allowedUsernames
+ * @property-read string $mode
+ * @property-read array $commands
  */
-final class BotConfig
+final class BotConfig extends Config
 {
-    protected Config $config;
-
-    public function __construct()
+    protected function getPath(): string
     {
-        $path = realpath(__DIR__ . '/../../') . '/config/bot.json';
-        $this->config = new Config($path);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function __get(string $name)
-    {
-        return $this->config->$name ?? throw new Exception($name . ' - not found in ' . __CLASS__);
+        return __DIR__ . '/../../config/bot.json';
     }
 }

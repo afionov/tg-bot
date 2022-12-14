@@ -4,7 +4,7 @@ namespace Bot\Mode\Quest\Content;
 
 final class ContentFactory
 {
-    public static function make(\Bot\Mode\Quest\Entity\Content $content): Content
+    public static function make(\Bot\Mode\Quest\DTO\Content $content): Content
     {
         $class = ContentTypeEnum::from($content->type);
         return match ($class) {

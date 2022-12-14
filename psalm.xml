@@ -15,7 +15,7 @@
     <issueHandlers>
         <MissingConstructor>
             <errorLevel type="suppress">
-                <directory name="src/Entity/Telegram/"/>
+                <directory name="src/DTO"/>
             </errorLevel>
         </MissingConstructor>
     </issueHandlers>

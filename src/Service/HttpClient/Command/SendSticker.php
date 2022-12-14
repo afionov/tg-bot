@@ -2,8 +2,6 @@
 
 namespace Bot\Service\HttpClient\Command;
 
-use Bot\Entity\Telegram\Message;
-
 class SendSticker extends Command
 {
     public function __construct(
@@ -15,11 +13,6 @@ class SendSticker extends Command
     public function getMethod(): string
     {
         return 'sendSticker';
-    }
-
-    public function getResponseEntity(): string
-    {
-        return Message::class;
     }
 
     public function getBody(): array

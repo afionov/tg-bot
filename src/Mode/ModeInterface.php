@@ -2,12 +2,8 @@
 
 namespace Bot\Mode;
 
-use Bot\Service\Hydrator\HydratableInterface;
-use Bot\Service\HydratorService;
+use Bot\Interfaces\WebhookHandlerInterface;
 
-interface ModeInterface
+interface ModeInterface extends WebhookHandlerInterface
 {
-    public function handleWebhook(HydratableInterface $webhook): void;
-
-    public function getModeHydrator(): HydratorService;
 }
