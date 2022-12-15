@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class ChatPermissions extends DTO
+final class ChatPermissions extends DTO
 {
 
 }

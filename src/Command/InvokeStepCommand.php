@@ -2,12 +2,12 @@
 
 namespace Bot\Command;
 
-use Bot\Command\Worker\InvokeStepWorker;
+use Bot\DTO\WebhookUpdate;
 
-final class InvokeStepCommand implements CommandInterface
+final class InvokeStepCommand extends Command
 {
-    public function getWorkerClassName(): string
+    public function handleWebhook(WebhookUpdate $webhookUpdate): void
     {
-        return InvokeStepWorker::class;
+        $this->worker->run($webhookUpdate);
     }
 }

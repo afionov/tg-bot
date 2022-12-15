@@ -1,6 +1,6 @@
 <?php
 
-namespace Bot\Mode\Quest\Answer;
+namespace Bot\Mode\Quest\Entity\Step\Answer;
 
 class Answer implements AnswerInterface
 {
@@ -10,9 +10,9 @@ class Answer implements AnswerInterface
     ) {
     }
 
-    public static function createFromDTO(\Bot\Mode\Quest\DTO\Answer $answer): Answer
+    public static function fromArray(array $array): Answer
     {
-        return new Answer($answer->value, $answer->move);
+        return new Answer($array['value'], $array['move']);
     }
 
     public function getButtonText(): string

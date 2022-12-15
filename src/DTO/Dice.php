@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class Dice extends DTO
+final class Dice extends DTO
 {
 
 }

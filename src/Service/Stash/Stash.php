@@ -33,6 +33,11 @@ final class Stash implements StashInterface
         return $this->data[$key] ?? null;
     }
 
+    public function has(string|int $key): bool
+    {
+        return isset($this->data[$key]);
+    }
+
     public function set(string|int $key, mixed $value): void
     {
         $this->data[$key] = $value;

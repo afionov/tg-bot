@@ -6,5 +6,5 @@ use Bot\DTO\WebhookUpdate;
 
 interface WebhookHandlerInterface
 {
-    public function handleWebhook(WebhookUpdate $webhookUpdate);
+    public function handleWebhook(WebhookUpdate $webhookUpdate): void;
 }

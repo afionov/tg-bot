@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class Contact extends DTO
+final class Contact extends DTO
 {
 
 }

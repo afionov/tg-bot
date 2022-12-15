@@ -4,6 +4,7 @@ namespace Bot\DTO;
 
 use Bot\Interfaces\ArrayableInterface;
 use Bot\Service\Hydrator\HydratableInterface;
+use RuntimeException;
 
 abstract class DTO implements ArrayableInterface, HydratableInterface
 {
@@ -12,14 +13,14 @@ abstract class DTO implements ArrayableInterface, HydratableInterface
         return $this->__toArray((array) $this);
     }
 
-    final protected function __toArray($array): array
+    final protected function __toArray(array $array): array
     {
         $result = [];
 
         foreach ($array as $key => $value) {
             if (is_object($value)) {
                 if (!$value instanceof DTO) {
-                    throw new \RuntimeException('');
+                    throw new RuntimeException('');
                 }
                 $result[$key] = $value->toArray();
                 continue;

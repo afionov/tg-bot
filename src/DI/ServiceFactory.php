@@ -16,7 +16,7 @@ final class ServiceFactory
      * @return mixed
      * @throws ServiceNotDefinedException
      */
-    public function create(string $className)
+    public function create(string $className): mixed
     {
         if (!isset($this->services[$className])) {
             throw new ServiceNotDefinedException($className);

@@ -17,8 +17,11 @@ final class ServiceLocator
         self::$instance = new ServiceLocator();
     }
 
-    public static function get(string $className)
+    public static function get(string $className): mixed
     {
+        if (!self::$instance instanceof ServiceLocator) {
+            throw new \RuntimeException();
+        }
         return self::$instance->getService($className);
     }
 
@@ -28,7 +31,7 @@ final class ServiceLocator
         $this->serviceFactory = new ServiceFactory($services);
     }
 
-    protected function getService(string $className)
+    protected function getService(string $className): mixed
     {
         return $this->services[$className]
             ?? $this->services[$className] = $this->serviceFactory->create($className);

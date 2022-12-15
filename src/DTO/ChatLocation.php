@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class ChatLocation extends DTO
+final class ChatLocation extends DTO
 {
 
 }

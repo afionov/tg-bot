@@ -2,12 +2,12 @@
 
 namespace Bot\Command;
 
-use Bot\Mode\Quest\Worker\StartQuestWorker;
+use Bot\DTO\WebhookUpdate;
 
-final class StartCommand implements CommandInterface
+final class StartCommand extends Command
 {
-    public function getWorkerClassName(): string
+    public function handleWebhook(WebhookUpdate $webhookUpdate): void
     {
-        return StartQuestWorker::class;
+        $this->worker->run($webhookUpdate);
     }
 }

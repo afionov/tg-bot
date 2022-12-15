@@ -6,7 +6,7 @@ use Bot\DI\ServiceLocator;
 
 final class CommandFactory
 {
-    public static function make(string $command): CommandInterface
+    public static function make(string $command): Command
     {
         return ServiceLocator::get($command);
     }

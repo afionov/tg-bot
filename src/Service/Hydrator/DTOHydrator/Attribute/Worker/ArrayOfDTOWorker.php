@@ -3,6 +3,7 @@
 namespace Bot\Service\Hydrator\DTOHydrator\Attribute\Worker;
 
 use Bot\Service\HydratorService;
+use InvalidArgumentException;
 
 final class ArrayOfDTOWorker implements WorkerInterface
 {
@@ -19,7 +20,7 @@ final class ArrayOfDTOWorker implements WorkerInterface
     public function handle(mixed $value): array
     {
         if (!is_array($value)) {
-            throw new \InvalidArgumentException('Value must be an array');
+            throw new InvalidArgumentException('Value must be an array');
         }
 
         $result = [];

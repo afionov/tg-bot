@@ -1,14 +1,8 @@
 {
   "start_id": "start",
-  "final_id": "final",
-  "commands": {
-    "/start": "\\Bot\\Mode\\Quest\\Command\\StartCommand",
-    "/invokestep": "\\Bot\\Mode\\Quest\\Command\\InvokeStepCommand",
-    "/restart": "\\Bot\\Mode\\Quest\\Command\\RestartCommand"
-  },
   "already_in_progress_step": "alreadyInProgress",
   "unknown_command_step": "UnknownCommandStep",
-  "button_format_strategy": "\\Bot\\Mode\\Quest\\Button\\Format\\TwoPerLineFormat",
+  "button_format_strategy": "Bot\\Command\\Formatter\\Button\\TwoPerLineFormat",
   "steps": [
     {
       "id": "alreadyInProgress",
@@ -20,7 +14,11 @@
       ],
       "answer": [
         {
-          "value": "Начать заново",
+          "value": "/invokestep",
+          "move": "start"
+        },
+        {
+          "value": "/restart",
           "move": "start"
         }
       ]

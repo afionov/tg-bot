@@ -3,10 +3,19 @@
 namespace Bot\Service\Logger;
 
 use DateTime;
+use DateTimeZone;
+use Exception;
 use Psr\Log\AbstractLogger;
 
 class FSLogger extends AbstractLogger
 {
+    /**
+     * @param $level
+     * @param string|\Stringable $message
+     * @param array $context
+     * @return void
+     * @throws Exception
+     */
     public function log($level, $message, array $context = []): void
     {
         $filePath = $this->getLogsDirectory() . '/' . $level . '.log';
@@ -21,9 +30,14 @@ class FSLogger extends AbstractLogger
         return realpath(__DIR__ . '/../../') . '/logs';
     }
 
+    /**
+     * @param string $level
+     * @return string
+     * @throws Exception
+     */
     protected function getLogMessagePrefix(string $level): string
     {
-        $dateTime = new DateTime(timezone: new \DateTimeZone('Europe/Moscow'));
+        $dateTime = new DateTime(timezone: new DateTimeZone('Europe/Moscow'));
         return $dateTime->format('Y-m-d H:i:s') . ' : ' . strtoupper($level) . ' : ';
     }
 }

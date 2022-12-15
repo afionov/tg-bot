@@ -2,7 +2,9 @@
 
 namespace Bot\Mode\Quest\Exception;
 
-class UnknownMessageException extends \Exception
+use Exception;
+
+class UnknownMessageException extends Exception
 {
     public function __construct(string $message)
     {

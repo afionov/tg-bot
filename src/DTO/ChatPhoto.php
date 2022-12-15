@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class ChatPhoto extends DTO
+final class ChatPhoto extends DTO
 {
 
 }

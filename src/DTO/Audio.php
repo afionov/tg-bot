@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class Audio extends DTO
+final class Audio extends DTO
 {
 
 }

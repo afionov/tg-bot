@@ -2,12 +2,12 @@
 
 namespace Bot\Command;
 
-use Bot\Mode\Quest\Worker\RestartWorker;
+use Bot\DTO\WebhookUpdate;
 
-final class RestartCommand implements CommandInterface
+final class RestartCommand extends Command
 {
-    public function getWorkerClassName(): string
+    public function handleWebhook(WebhookUpdate $webhookUpdate): void
     {
-        return RestartWorker::class;
+        $this->worker->run($webhookUpdate);
     }
 }

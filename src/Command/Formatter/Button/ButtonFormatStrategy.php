@@ -1,6 +1,6 @@
 <?php
 
-namespace Bot\Mode\Quest\Button\Format;
+namespace Bot\Command\Formatter\Button;
 
 interface ButtonFormatStrategy
 {

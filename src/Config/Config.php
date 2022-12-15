@@ -24,14 +24,14 @@ abstract class Config implements ArrayableInterface, IteratorAggregate
         );
     }
 
-    final public function __get(string $name)
+    final public function __get(string $name): mixed
     {
         return $this->data[$name] ?? null;
     }
 
-    final public function get(string $name)
+    final public function get(string $name): mixed
     {
-        return $this->__get($this->data[$name]);
+        return $this->__get($name);
     }
 
     final public function __isset(string $name): bool

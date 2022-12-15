@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class Document extends DTO
+final class Document extends DTO
 {
 
 }

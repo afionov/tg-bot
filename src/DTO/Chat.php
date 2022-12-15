@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class Chat extends DTO
+final class Chat extends DTO
 {
     /**
      * @var int

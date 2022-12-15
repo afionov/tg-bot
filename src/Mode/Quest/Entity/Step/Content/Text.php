@@ -1,6 +1,6 @@
 <?php
 
-namespace Bot\Mode\Quest\Content;
+namespace Bot\Mode\Quest\Entity\Step\Content;
 
 use Bot\Service\HttpClient\Command\Command;
 use Bot\Service\HttpClient\Command\SendMessage;

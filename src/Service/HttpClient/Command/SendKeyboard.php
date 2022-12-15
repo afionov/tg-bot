@@ -2,7 +2,7 @@
 
 namespace Bot\Service\HttpClient\Command;
 
-use Bot\Mode\Quest\Button\Format\ButtonFormatStrategy;
+use Bot\Command\Formatter\Button\ButtonFormatStrategy;
 
 class SendKeyboard extends SendMessage
 {

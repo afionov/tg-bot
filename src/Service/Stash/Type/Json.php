@@ -35,7 +35,7 @@ class Json implements StashTypeInterface
         );
     }
 
-    protected function getFileContent($path): bool|string
+    protected function getFileContent(string $path): bool|string
     {
         if (!file_exists($path)) {
             return self::EMPTY_FILE_CONTENT;
