@@ -14,6 +14,9 @@ abstract class Command implements ArrayableInterface
 
     abstract public function getBody(): array;
 
+    /**
+     * @return non-empty-string
+     */
     abstract public function getMethod(): string;
 
     /**

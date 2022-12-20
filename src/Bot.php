@@ -27,11 +27,11 @@ final class Bot
      * @param array<string, string> $additionalHeaders
      */
     public function __construct(
-        protected string $token,
-        protected ClientInterface $httpClient,
+        protected readonly string $token,
+        protected readonly ClientInterface $httpClient,
         protected ?Closure $modeClass,
-        protected array $commands = ['/start' => fn (): CommandInterface => new DefaultStartCommand()],
-        protected array $additionalHeaders = []
+        protected readonly array $commands = ['/start' => fn (): CommandInterface => new DefaultStartCommand()],
+        protected readonly array $additionalHeaders = []
     ) {
         if (!isset($modeClass)) {
             $this->modeClass = fn (): ModeInterface => new NullMode();
@@ -40,14 +40,7 @@ final class Bot
 
     public function handleWebhook(): CompositeResponse
     {
-        try {
-            $webhookDTO = $this->createWebhookDTO();
-        } catch (Helper\DTO\Hydrator\Exception\AttributeValidationException $e) {
-        } catch (Helper\DTO\Hydrator\Exception\InternalClassException $e) {
-        } catch (Helper\DTO\Hydrator\Exception\InvalidDTOException $e) {
-        } catch (Helper\DTO\Hydrator\Exception\UndefinedDTOException $e) {
-        }
-
+        $webhookDTO = $this->createWebhookDTO();
 
         $text = $webhookDTO->message->text;
 
@@ -57,7 +50,15 @@ final class Bot
         $handler = $this->commands[$text] ?? $this->modeClass;
         $compositeCommand = $handler->handleWebhook($webhookDTO);
 
-        return $this->sendCommands($compositeCommand);
+        return $this->sendCompositeCommand($compositeCommand);
+    }
+
+    public function sendCompositeCommand(CompositeCommand $compositeCommand): CompositeResponse
+    {
+        $httpClient = new HttpClient($this->token, $this->httpClient, $this->additionalHeaders);
+        $compositeResponse = new CompositeResponse();
+
+        return $httpClient->sendCompositeCommand($compositeCommand, $compositeResponse);
     }
 
     /**
@@ -88,14 +89,5 @@ final class Bot
         $webhookDTO = Hydrator::hydrate(Update::class, $requestArr);
 
         return $webhookDTO;
-    }
-
-
-    protected function sendCommands(CompositeCommand $compositeCommand): CompositeResponse
-    {
-        $httpClient = new HttpClient($this->token, $this->httpClient, $this->additionalHeaders);
-        $compositeResponse = new CompositeResponse();
-
-        return $httpClient->sendCompositeCommand($compositeCommand, $compositeResponse);
     }
 }

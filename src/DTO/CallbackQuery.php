@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class CallbackQuery extends DTO
+final class CallbackQuery extends DTO
 {
 
 }

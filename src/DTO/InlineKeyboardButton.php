@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class InlineKeyboardButton extends DTO
+final class InlineKeyboardButton extends DTO
 {
 
 }

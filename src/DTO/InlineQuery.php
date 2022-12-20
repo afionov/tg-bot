@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class InlineQuery extends DTO
+final class InlineQuery extends DTO
 {
 
 }

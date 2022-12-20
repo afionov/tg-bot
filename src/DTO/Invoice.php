@@ -2,7 +2,7 @@
 
 namespace Bot\DTO;
 
-class Invoice extends DTO
+final class Invoice extends DTO
 {
 
 }
