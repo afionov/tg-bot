@@ -1,31 +1,19 @@
 # tg-bot
 Бот для Telegram
 
-# Quest configuration
-*start_id – строка - id шага, с которого начнется квест
-*final_id – строка - id шага, на котором квест кончается
-*steps – массив - массив шагов квеста
-Массив steps. Значения - ассоциативные массивы. Порядок шагов не важен.
-*id - строка - id шага
-*content - массив - контент шага, порядок важен
-answer - массив - контент ответа
-Массив content. Значения - ассоциативные массивы. Доступные типы контента - текст и изображение. Порядок ВАЖЕН!
-*type - строка - тип контента (text/image)
-*value - строка - значение контента (text - текст сообщения, разделение строк - LF(\n). image - ссылка на картинку)
-Массив answer. Значения - ассоциативные массивы. Доступные типы ответа - кнопка и текст. При нахождении в массиве ответа типа text - все другие ответы игнорируются. Порядок ВАЖЕН!
-Кнопка:
-*type - строка - тип (button)
-*value - строка - текст кнопки
-*move - строка - id шага для перемещения
-useTextOnMove - bool - нужно ли отправлять сообщение при перемещении, по умолчанию - false
-textOnMove - строка - сообщение при перемещении
-Текст:
-*type - строка - тип (text)
-*expectValue - строка - ожидаемое значение
-strict - bool - строгая проверка с учетом регистра, по умолчанию - false
-*moveOnGood - строка - id шага для перемещения при правильном ответе
-*moveOnBad - строка - id шага для перемещения при неправильном ответе
-useTextOnGoodMove - bool - нужно ли отправлять сообщение при правильном ответе, по умолчанию - false
-useTextOnBadMove - bool - нужно ли отправлять сообщение при неправильном ответе, по умолчанию - false
-textOnGoodMove - строка - сообщение при правильном ответе
-textOnBadMove - строка - сообщение при неправильном ответе
+# Usage
+
+```php
+$bot = new \Bot\Bot(
+    token: '123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew1', //required
+    httpClient: new \GuzzleHttp\Client(), //required
+    modeClass: \Bot\Mode\NullMode::class, //optional
+    commands: ['/start' => fn (): CommandInterface => new DefaultStartCommand()] //optional
+);
+```
+
+# TODO
+
+- Tests
+- Documentation
+- Full telegram api support

@@ -2,7 +2,16 @@
 
 namespace Bot\DTO;
 
-use Bot\Service\Hydrator\DTOHydrator\Attribute\ArrayOfDTO;
+use Bot\DTO\Chat\Chat;
+use Bot\DTO\Poll\Poll;
+use Bot\DTO\Sticker\Sticker;
+use Bot\DTO\Video\Video;
+use Bot\DTO\Video\VideoNote;
+use Bot\DTO\VideoChat\VideoChatEnded;
+use Bot\DTO\VideoChat\VideoChatParticipantsInvited;
+use Bot\DTO\VideoChat\VideoChatScheduled;
+use Bot\DTO\VideoChat\VideoChatStarted;
+use Bot\Helper\DTO\Attribute\ArrayOfDTO;
 
 class Message extends DTO
 {
