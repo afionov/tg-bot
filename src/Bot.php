@@ -2,8 +2,6 @@
 
 namespace Bot;
 
-use Bot\Command\CommandInterface;
-use Bot\Command\DefaultStartCommand;
 use Bot\DTO\Update;
 use Bot\Helper\DTO\Hydrator\Hydrator;
 use Bot\Http\Command\CompositeCommand;
@@ -12,30 +10,15 @@ use Bot\Http\Exception\BadRequestEnum;
 use Bot\Http\Exception\BadRequestException;
 use Bot\Http\HttpClient;
 use Bot\Interfaces\WebhookHandlerInterface;
-use Bot\Mode\ModeInterface;
-use Bot\Mode\NullMode;
-use Closure;
-use Psr\Http\Client\ClientInterface;
 
 final class Bot
 {
     /**
-     * @param string $token
-     * @param ClientInterface $httpClient
-     * @param null|Closure():ModeInterface $modeClass
-     * @param array<string, Closure():CommandInterface> $commands
-     * @param array<string, string> $additionalHeaders
+     * @param Configuration $configuration
      */
     public function __construct(
-        protected readonly string $token,
-        protected readonly ClientInterface $httpClient,
-        protected ?Closure $modeClass,
-        protected readonly array $commands = ['/start' => fn (): CommandInterface => new DefaultStartCommand()],
-        protected readonly array $additionalHeaders = []
+        protected Configuration $configuration
     ) {
-        if (!isset($modeClass)) {
-            $this->modeClass = fn (): ModeInterface => new NullMode();
-        }
     }
 
     public function handleWebhook(): CompositeResponse

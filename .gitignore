@@ -1,5 +1,3 @@
 vendor/
-.idea/
 
-docker/.env
 composer.lock
