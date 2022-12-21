@@ -3,7 +3,7 @@
 namespace Bot\DTO;
 
 use Bot\DTO\Chat\ChatJoinRequest;
-use Bot\DTO\ChatMember\ChatMemberUpdated;
+use Bot\DTO\Chat\ChatMember\ChatMemberUpdated;
 use Bot\DTO\Poll\Poll;
 use Bot\DTO\Poll\PollAnswer;
 

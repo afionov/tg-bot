@@ -11,6 +11,9 @@ use Psr\Http\Client\ClientInterface;
 
 final class Configuration
 {
+    /**
+     * @var Closure(): ModeInterface
+     */
     protected Closure $mode;
 
     /**
@@ -69,10 +72,65 @@ final class Configuration
         $this->additionalHeaders = $additionalHeaders;
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @return $this
+     */
     public function addAdditionalHeader(string $name, string $value): Configuration
     {
         $this->additionalHeaders[$name] = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return ClientInterface
+     */
+    public function getHttpClient(): ClientInterface
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getAdditionalHeaders(): array
+    {
+        return $this->additionalHeaders;
+    }
+
+    /**
+     * @param string $command
+     * @return bool
+     */
+    public function hasCommand(string $command): bool
+    {
+        return isset($this->commands[$command]);
+    }
+
+    /**
+     * @param string $command
+     * @return CommandInterface
+     */
+    public function getCommand(string $command): CommandInterface
+    {
+        return ($this->commands[$command])();
+    }
+
+    /**
+     * @return ModeInterface
+     */
+    public function getMode(): ModeInterface
+    {
+        return ($this->mode)();
     }
 }

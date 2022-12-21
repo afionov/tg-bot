@@ -30,7 +30,9 @@ final class Bot
         /**
          * @var WebhookHandlerInterface $handler
          */
-        $handler = $this->commands[$text] ?? $this->modeClass;
+        $handler = $this->configuration->hasCommand($text)
+            ? $this->configuration->getCommand($text)
+            : $this->configuration->getMode();
         $compositeCommand = $handler->handleWebhook($webhookDTO);
 
         return $this->sendCompositeCommand($compositeCommand);
@@ -38,7 +40,11 @@ final class Bot
 
     public function sendCompositeCommand(CompositeCommand $compositeCommand): CompositeResponse
     {
-        $httpClient = new HttpClient($this->token, $this->httpClient, $this->additionalHeaders);
+        $httpClient = new HttpClient(
+            $this->configuration->getToken(),
+            $this->configuration->getHttpClient(),
+            $this->configuration->getAdditionalHeaders()
+        );
         $compositeResponse = new CompositeResponse();
 
         return $httpClient->sendCompositeCommand($compositeCommand, $compositeResponse);
