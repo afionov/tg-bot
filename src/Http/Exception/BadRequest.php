@@ -2,7 +2,7 @@
 
 namespace Bot\Http\Exception;
 
-enum BadRequestEnum: string
+enum BadRequest: string
 {
     case EMPTY_REQUEST_BODY = 'Empty request body.';
 
